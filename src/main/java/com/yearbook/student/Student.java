@@ -1,26 +1,28 @@
-package com.yearbook.user;
+package com.yearbook.student;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import lombok.Data;
 
 @Entity
 @Data
-public class User {
+public class Student {
 	
 	@Id
 	@GeneratedValue
 	private Long id;
 	
 	@NotEmpty
-	@Size(min=4)
-	private String username;
+	private String firstName;
 	
 	@NotEmpty
-	@Size(min=4)
-	private String password;
+	private String lastName;
 	
+	private String middleName;
+	
+	private int yearGraduated;
+	
+
 }
