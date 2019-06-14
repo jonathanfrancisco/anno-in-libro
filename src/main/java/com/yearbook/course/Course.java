@@ -1,14 +1,14 @@
 package com.yearbook.course;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import school.School;
-
 import com.yearbook.student.Student;
 
 @Entity
@@ -21,8 +21,10 @@ public class Course {
 	
 	@NotNull
 	private String name;
-
 	
+	@OneToMany
+	@JoinColumn
+	private List<Student> students = new ArrayList<>();
 	
 	
 
