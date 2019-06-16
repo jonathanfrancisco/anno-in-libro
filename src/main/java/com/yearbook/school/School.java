@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.yearbook.student.Student;
 
 
@@ -27,6 +28,7 @@ public class School {
 	private String name;
 	
 	@OneToMany(mappedBy="school")
+	@JsonIgnore
 	private List<Student> students = new ArrayList<>();
 
 }
