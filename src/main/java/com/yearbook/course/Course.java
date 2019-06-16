@@ -2,8 +2,11 @@ package com.yearbook.course;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -16,18 +19,13 @@ import com.yearbook.student.Student;
 public class Course {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
 	private String name;
 	
-	@OneToMany
-	@JoinColumn
+	@OneToMany(mappedBy="course")
 	private List<Student> students = new ArrayList<>();
-	
-	
-
-
 	
 }
