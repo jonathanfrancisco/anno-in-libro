@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.yearbook.student.Student;
 
 @Entity
@@ -26,6 +28,7 @@ public class Course {
 	private String name;
 	
 	@OneToMany(mappedBy="course")
+	@JsonIgnore
 	private List<Student> students = new ArrayList<>();
 	
 }
