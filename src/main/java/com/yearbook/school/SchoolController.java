@@ -11,12 +11,11 @@ import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.yearbook.student.Student;
 
 @RestController
 public class SchoolController {
@@ -57,6 +56,16 @@ public class SchoolController {
 	@DeleteMapping("/schools/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		schoolRepository.deleteById(id);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@PatchMapping("/schools/{id}")
+	public ResponseEntity<?> patch(@RequestBody School school, @PathVariable Long id) {
+		this.schoolRepository.findById(id).map((entity) -> {
+			entity.setName(school.getName());
+			return this.schoolRepository.save(entity);
+		}).orElseThrow(() -> new SchoolNotFoundException(school.getId()));
+		
 		return ResponseEntity.noContent().build();
 	}
 	
