@@ -31,6 +31,8 @@ public class Student {
 	
 	private String middleName;
 	
+	private String quote;
+	
 	@NotNull
 	private int yearGraduated;
 	
